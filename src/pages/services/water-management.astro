@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('services', 'water-management');
+if (!entry) throw new Error('water-management.md not found');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${entry.data.title} — Àbiòtic`}>
+  <h1>{entry.data.title}</h1>
+  <Content />
+</BaseLayout>

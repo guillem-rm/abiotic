@@ -1,0 +1,21 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+// Singleton pages: home, company, contact
+const pages = defineCollection({
+  loader: glob({ pattern: '*.md', base: './content' }),
+  schema: z.object({
+    title: z.string().optional(),
+  }),
+});
+
+// Individual service pages
+const services = defineCollection({
+  loader: glob({ pattern: '*.md', base: './content/services' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+  }),
+});
+
+export const collections = { pages, services };

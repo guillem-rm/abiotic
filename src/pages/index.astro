@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'home');
+if (!entry) throw new Error('home.md not found');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="Àbiòtic — Consultoria Ambiental a Andorra">
+  <h1>Inici</h1>
+  <Content />
+</BaseLayout>

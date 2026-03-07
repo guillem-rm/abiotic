@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'company');
+if (!entry) throw new Error('company.md not found');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="L'empresa — Àbiòtic">
+  <h1>L'empresa</h1>
+  <Content />
+</BaseLayout>

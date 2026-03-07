@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+
+const entry = await getEntry('pages', 'contact');
+if (!entry) throw new Error('contact.md not found');
+const { Content } = await render(entry);
+---
+
+<BaseLayout title="Contacte — Àbiòtic">
+  <h1>Contacte</h1>
+  <Content />
+</BaseLayout>

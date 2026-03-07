@@ -101,12 +101,12 @@ Each page file should:
 
 ## Acceptance Criteria
 
-- [ ] `npm run dev` starts without errors
-- [ ] All 6 routes return HTTP 200 and render placeholder content
-- [ ] `npx astro check` reports zero errors
-- [ ] `npm run build` produces a `dist/` folder with all 6 HTML files
-- [ ] Content collections load Markdown from `content/` correctly
-- [ ] TypeScript types for collection entries are available in page files
+- [x] `npm run dev` starts without errors
+- [x] All 6 routes return HTTP 200 and render placeholder content
+- [x] `npx astro check` reports zero errors
+- [x] `npm run build` produces a `dist/` folder with all 6 HTML files
+- [x] Content collections load Markdown from `content/` correctly
+- [x] TypeScript types for collection entries are available in page files
 
 ---
 
