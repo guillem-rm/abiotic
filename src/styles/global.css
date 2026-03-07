@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 @import '@fontsource-variable/inter';
 
 @tailwind base;
@@ -8,10 +9,13 @@
   body {
     @apply text-stone-800 bg-white antialiased;
   }
-  h1, h2, h3 {
-    @apply font-semibold text-brand-700;
-  }
   a {
     @apply transition-colors;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Lora', Georgia, serif;
   }
 }
