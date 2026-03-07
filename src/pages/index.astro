@@ -1,13 +1,151 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEntry, render } from 'astro:content';
+import ServiceCard from '../components/ServiceCard.astro';
+import ValueItem from '../components/ValueItem.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getEntry } from 'astro:content';
 
 const entry = await getEntry('pages', 'home');
 if (!entry) throw new Error('home.md not found');
-const { Content } = await render(entry);
+
+interface HeroData { headline: string[]; tagline: string; }
+interface ServiceData { title: string; description: string; href: string; }
+interface MissionData { heading: string; body: string; visio: string; }
+interface ValueData { title: string; description: string; }
+interface CtaData { heading: string; label: string; href: string; }
+interface HomeData {
+  hero: HeroData;
+  services: ServiceData[];
+  mission: MissionData;
+  values: ValueData[];
+  cta: CtaData;
+}
+
+const { hero, services, mission, values, cta } = entry.data as unknown as HomeData;
 ---
 
 <BaseLayout title="Àbiòtic — Consultoria Ambiental a Andorra">
-  <h1>Inici</h1>
-  <Content />
+
+  <!-- 1. Hero -->
+  <section class="bg-brand-50 min-h-[60vh] flex items-center">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <div class="max-w-2xl">
+        <p class="text-brand-500 font-semibold text-xs uppercase tracking-widest mb-6">
+          Consultoria ambiental · Andorra
+        </p>
+        <h1 class="text-4xl sm:text-5xl font-semibold leading-tight mb-6">
+          {hero.headline.map((line, i) => (
+            <span class:list={['block', i === 0 ? 'text-brand-900' : 'text-brand-700']}>{line}</span>
+          ))}
+        </h1>
+        <p class="text-lg text-stone-600 mb-8 leading-relaxed">{hero.tagline}</p>
+        <div class="flex flex-wrap gap-4">
+          <a
+            href="#serveis"
+            class="inline-flex items-center gap-2 bg-brand-500 text-white font-semibold px-6 py-3 rounded-md hover:bg-brand-700 transition-colors no-underline"
+          >
+            Descobreix els serveis
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <a
+            href="/contact"
+            class="inline-flex items-center gap-2 border border-brand-500 text-brand-700 font-semibold px-6 py-3 rounded-md hover:bg-brand-100 transition-colors no-underline"
+          >
+            Contacta'ns
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Serveis principals -->
+  <section id="serveis" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        heading="Els nostres serveis"
+        subheading="Tres àrees d'especialització per donar resposta als reptes ambientals i tècnics de les empreses i administracions."
+      />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <ServiceCard title={services[0].title} description={services[0].description} href={services[0].href}>
+          <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c0 0-6.75 7.313-6.75 11.25a6.75 6.75 0 0013.5 0C18.75 9.563 12 2.25 12 2.25z" />
+          </svg>
+        </ServiceCard>
+
+        <ServiceCard title={services[1].title} description={services[1].description} href={services[1].href}>
+          <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 01-6.364-2.636C3.25 16.08 3 12 3 12s3.25.08 5.636 2.364A9 9 0 0012 21zm0 0a9 9 0 006.364-2.636C20.75 16.08 21 12 21 12s-3.25.08-5.636 2.364A9 9 0 0112 21zm0 0V9m0 0a3 3 0 100-6 3 3 0 000 6z" />
+          </svg>
+        </ServiceCard>
+
+        <ServiceCard title={services[2].title} description={services[2].description} href={services[2].href}>
+          <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </ServiceCard>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Missió -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-brand-700 mb-6">{mission.heading}</h2>
+          <p class="text-stone-600 leading-relaxed mb-4">{mission.body}</p>
+          <p class="text-stone-600 leading-relaxed">{mission.visio}</p>
+        </div>
+        <div class="hidden md:flex items-center justify-center">
+          <div class="w-full max-w-xs aspect-square rounded-2xl bg-brand-100 flex items-center justify-center">
+            <svg class="w-24 h-24 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c0 0-6.75 7.313-6.75 11.25a6.75 6.75 0 0013.5 0C18.75 9.563 12 2.25 12 2.25z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Valors -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        heading="Per què Àbiòtic"
+        subheading="Els valors que guien el nostre treball dia a dia."
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+
+        <ValueItem title={values[0].title} description={values[0].description}>
+          <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </ValueItem>
+
+        <ValueItem title={values[1].title} description={values[1].description}>
+          <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+        </ValueItem>
+
+        <ValueItem title={values[2].title} description={values[2].description}>
+          <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+        </ValueItem>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CTA -->
+  <CtaBand heading={cta.heading} cta={cta.label} href={cta.href} />
+
 </BaseLayout>
