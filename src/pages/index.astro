@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
+import MarqueeBand from '../components/MarqueeBand.astro';
 import { getEntry } from 'astro:content';
 
 const entry = await getEntry('pages', 'home');
@@ -194,6 +195,9 @@ const { hero, services, mission, values, cta } = entry.data as unknown as HomeDa
       </div>
     </div>
   </section>
+
+  <!-- Marquee band -->
+  <MarqueeBand />
 
   <!-- 4. Valors — editorial numbered list -->
   <section class="py-24 bg-stone-50 border-t border-stone-200">
