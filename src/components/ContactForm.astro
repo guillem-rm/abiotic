@@ -1,0 +1,114 @@
+---
+interface Props {
+  netlifyFormName?: string;
+}
+
+const { netlifyFormName = 'contact' } = Astro.props;
+---
+
+<form
+  name={netlifyFormName}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="space-y-5"
+  id="contact-form"
+>
+  <input type="hidden" name="form-name" value={netlifyFormName} />
+
+  <!-- Honeypot (hidden from humans) -->
+  <div class="hidden" aria-hidden="true">
+    <label>No omplis aquest camp: <input name="bot-field" /></label>
+  </div>
+
+  <!-- Nom i cognoms -->
+  <div>
+    <label for="name" class="block text-sm font-medium text-stone-700 mb-1">
+      Nom i cognoms <span class="text-brand-500">*</span>
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      autocomplete="name"
+      class="w-full border border-stone-300 rounded-md px-3 py-2.5 text-sm text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+      placeholder="Joan Garcia"
+    />
+  </div>
+
+  <!-- Correu electrònic -->
+  <div>
+    <label for="email" class="block text-sm font-medium text-stone-700 mb-1">
+      Correu electrònic <span class="text-brand-500">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="w-full border border-stone-300 rounded-md px-3 py-2.5 text-sm text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+      placeholder="joan@empresa.com"
+    />
+  </div>
+
+  <!-- Empresa -->
+  <div>
+    <label for="company" class="block text-sm font-medium text-stone-700 mb-1">
+      Empresa <span class="text-stone-400 font-normal">(opcional)</span>
+    </label>
+    <input
+      type="text"
+      id="company"
+      name="company"
+      autocomplete="organization"
+      class="w-full border border-stone-300 rounded-md px-3 py-2.5 text-sm text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+      placeholder="Nom de l'empresa"
+    />
+  </div>
+
+  <!-- Missatge -->
+  <div>
+    <label for="message" class="block text-sm font-medium text-stone-700 mb-1">
+      Missatge <span class="text-brand-500">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="5"
+      class="w-full border border-stone-300 rounded-md px-3 py-2.5 text-sm text-stone-800 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition resize-y"
+      placeholder="Explica'ns en què podem ajudar-te..."
+    ></textarea>
+  </div>
+
+  <!-- Política de privadesa -->
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="privacy"
+      name="privacy"
+      required
+      class="mt-0.5 h-4 w-4 rounded border-stone-300 text-brand-500 focus:ring-brand-500 cursor-pointer"
+    />
+    <label for="privacy" class="text-sm text-stone-600 cursor-pointer leading-snug">
+      He llegit i accepto la
+      <a href="#" class="text-brand-500 hover:text-brand-700 underline">política de privadesa</a>.
+      <!-- TODO: link to /privacy once the page exists -->
+    </label>
+  </div>
+
+  <!-- Submit -->
+  <div class="pt-2">
+    <button
+      type="submit"
+      class="inline-flex items-center gap-2 bg-brand-500 text-white font-semibold px-6 py-3 rounded-md hover:bg-brand-700 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
+    >
+      Envia el missatge
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </button>
+  </div>
+</form>

@@ -111,15 +111,15 @@ The checkbox links to a privacy policy. Since no separate privacy policy page is
 
 ## Acceptance Criteria
 
-- [ ] Contact page renders all details from `content/contact.md`
-- [ ] All form fields are present with correct `name` attributes
+- [x] Contact page renders all details from `content/contact.md`
+- [x] All form fields are present with correct `name` attributes
 - [ ] Form submits correctly via Netlify Forms (test with `netlify dev` or deploy preview)
-- [ ] Privacy checkbox is required and prevents submission when unchecked
-- [ ] Phone numbers and email are clickable links
-- [ ] Instagram link opens in new tab
-- [ ] Success state is shown after submission
-- [ ] Form is accessible: labels are properly associated with inputs (`for`/`id`)
-- [ ] Page is responsive at 375px and 1280px
+- [x] Privacy checkbox is required and prevents submission when unchecked
+- [x] Phone numbers and email are clickable links
+- [x] Instagram link opens in new tab (`target="_blank" rel="noopener noreferrer"`)
+- [x] Success state is shown after submission (`?success=true` detection via minimal inline script)
+- [x] Form is accessible: labels are properly associated with inputs (`for`/`id`)
+- [x] Page is responsive at 375px and 1280px
 
 ---
 

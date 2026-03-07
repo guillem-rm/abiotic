@@ -1,0 +1,31 @@
+---
+interface Props {
+  label: string;
+  href?: string;
+  newTab?: boolean;
+}
+
+const { label, href, newTab = false } = Astro.props;
+---
+
+<div class="flex items-start gap-3">
+  <div class="mt-0.5 shrink-0 text-brand-500">
+    <slot name="icon" />
+  </div>
+  <div>
+    <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-1">{label}</p>
+    <div class="text-stone-700 text-sm leading-relaxed">
+      {href ? (
+        <a
+          href={href}
+          class:list={['text-stone-700 hover:text-brand-700 no-underline', newTab ? '' : '']}
+          {...newTab ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+        >
+          <slot />
+        </a>
+      ) : (
+        <slot />
+      )}
+    </div>
+  </div>
+</div>
