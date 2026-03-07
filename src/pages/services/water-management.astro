@@ -19,6 +19,8 @@ const otherServices = allServices.filter((s) => s.id !== entry.id);
     title={entry.data.title}
     subtitle={entry.data.description}
     eyebrow="Serveis"
+    image="/images/water-central.png"
+    imageAlt="Central hídrica al Principat d'Andorra"
   />
 
   <!-- Main content -->
@@ -45,10 +47,22 @@ const otherServices = allServices.filter((s) => s.id !== entry.id);
         </div>
 
         <!-- Applications panel (4 cols) -->
-        <div class="lg:col-span-4">
+        <div class="lg:col-span-4 flex flex-col gap-6">
+          <!-- Service image -->
+          <div class="overflow-hidden">
+            <img
+              src="/images/water-sala-bombes.png"
+              alt="Sala de bombes i instal·lacions hídriques"
+              class="w-full h-48 object-cover"
+              loading="lazy"
+              width="600"
+              height="192"
+            />
+          </div>
+
           <div class="border border-stone-200 p-8">
             <!-- Top accent -->
-            <div class="h-0.5 w-full bg-brand-500 -mt-8 -mx-8 mb-8 relative" style="width: calc(100% + 4rem);"></div>
+            <div class="h-0.5 w-full bg-secondary-500 -mt-8 -mx-8 mb-8 relative" style="width: calc(100% + 4rem);"></div>
 
             <p class="text-[10px] font-semibold text-stone-400 uppercase tracking-[0.2em] mb-5">Aplicacions</p>
             <div class="flex flex-wrap gap-2">

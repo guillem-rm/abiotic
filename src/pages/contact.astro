@@ -33,7 +33,7 @@ const { intro, address, phones, email, instagram } = entry.data as unknown as Co
 
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
       <div class="flex items-center gap-4 mb-8">
-        <div class="w-8 h-px bg-brand-500"></div>
+        <div class="w-8 h-px bg-secondary-500"></div>
         <span class="text-brand-600 text-xs font-semibold uppercase tracking-[0.2em]">Contacte</span>
       </div>
       <h1 class="font-display text-5xl sm:text-6xl font-medium text-stone-900 leading-[1.15] max-w-lg">
@@ -79,7 +79,7 @@ const { intro, address, phones, email, instagram } = entry.data as unknown as Co
 
             <!-- Adreça -->
             <div>
-              <p class="text-brand-300 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Adreça</p>
+              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Adreça</p>
               <p class="text-white text-sm leading-relaxed">
                 {address.street}<br />
                 {address.city}<br />
@@ -91,7 +91,7 @@ const { intro, address, phones, email, instagram } = entry.data as unknown as Co
 
             <!-- Telèfon -->
             <div>
-              <p class="text-brand-300 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Telèfon</p>
+              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Telèfon</p>
               <div class="space-y-1">
                 {phones.map((phone) => (
                   <a
@@ -108,7 +108,7 @@ const { intro, address, phones, email, instagram } = entry.data as unknown as Co
 
             <!-- Correu -->
             <div>
-              <p class="text-brand-300 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Correu electrònic</p>
+              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Correu electrònic</p>
               <a
                 href={`mailto:${email}`}
                 class="text-white text-sm hover:text-brand-200 transition-colors no-underline"
@@ -121,7 +121,7 @@ const { intro, address, phones, email, instagram } = entry.data as unknown as Co
 
             <!-- Instagram -->
             <div>
-              <p class="text-brand-300 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Xarxes socials</p>
+              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">Xarxes socials</p>
               <a
                 href={instagram}
                 target="_blank"

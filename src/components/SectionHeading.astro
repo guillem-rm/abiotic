@@ -8,7 +8,10 @@ interface Props {
 const { heading, subheading, centered = false } = Astro.props;
 ---
 
-<div class:list={['flex items-baseline justify-between pb-8 mb-10 border-b border-stone-200', centered ? 'flex-col items-center text-center gap-2' : '']}>
+<div class:list={[
+  'flex pb-8 mb-10 border-b border-stone-200',
+  centered ? 'flex-col items-center text-center gap-2' : 'items-baseline justify-between'
+]}>
   <h2 class="font-display text-3xl font-medium text-stone-900">{heading}</h2>
   {subheading && (
     <p class:list={['text-stone-400 text-sm', centered ? '' : 'hidden sm:block']}>{subheading}</p>

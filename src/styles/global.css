@@ -7,7 +7,8 @@
 
 @layer base {
   body {
-    @apply text-stone-800 bg-white antialiased;
+    @apply bg-white antialiased;
+    color: #1A1A1A;
   }
   a {
     @apply transition-colors;
@@ -17,5 +18,29 @@
 @layer utilities {
   .font-display {
     font-family: 'Lora', Georgia, serif;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
