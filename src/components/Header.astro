@@ -16,6 +16,8 @@ function isActive(href: string): boolean {
 ---
 
 <header class="bg-white border-b border-stone-200 sticky top-0 z-50">
+  <!-- Checkbox must be a sibling of the mobile panel for Tailwind peer to work -->
+  <input type="checkbox" id="mobile-menu" class="sr-only peer/menu" />
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
 
@@ -75,7 +77,7 @@ function isActive(href: string): boolean {
           <div
             id="services-menu"
             role="menu"
-            class="absolute top-full left-0 mt-1 w-52 bg-white border border-stone-200 shadow-sm hidden group-hover:block group-focus-within:block z-10 before:absolute before:content-[''] before:h-2 before:w-full before:-top-2 before:left-0"
+            class="absolute top-full left-0 mt-1 w-52 bg-white border border-stone-200 shadow-sm hidden group-hover:block group-focus-within:block z-10 before:absolute before:content-[''] before:h-2 before:w-full before:-top-2 before:left-0 dropdown-animate"
           >
             <!-- Top accent bar -->
             <div class="h-px w-full bg-secondary-500"></div>
@@ -111,18 +113,22 @@ function isActive(href: string): boolean {
 
       </nav>
 
-      <!-- Mobile: checkbox hamburger (CSS-only) -->
-      <label for="mobile-menu" class="md:hidden cursor-pointer p-2 text-stone-500 hover:text-brand-700 transition-colors" aria-label="Obrir menú">
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+      <!-- Mobile: hamburger / close label -->
+      <label for="mobile-menu" class="md:hidden cursor-pointer p-2 text-stone-500 hover:text-brand-700 transition-colors relative" aria-label="Obrir menú">
+        <!-- Hamburger (3 lines) -->
+        <svg class="nav-icon-open w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
+        <!-- Close (×) -->
+        <svg class="nav-icon-close w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </label>
-      <input type="checkbox" id="mobile-menu" class="hidden peer/menu" />
     </div>
   </div>
 
   <!-- Mobile nav panel — typographic list, no rounded corners -->
-  <div class="hidden peer-checked/menu:block md:hidden border-t border-stone-100 bg-white">
+  <div class="mobile-nav-panel md:hidden border-t border-stone-100 bg-white">
     <nav class="max-w-6xl mx-auto px-4 py-2 flex flex-col text-[11px] font-semibold uppercase tracking-widest">
 
       <a
@@ -176,6 +182,39 @@ function isActive(href: string): boolean {
 </header>
 
 <script>
+  // ── Mobile nav: animated open / close ────────────────────────
+  const mobileCheckbox = document.getElementById('mobile-menu') as HTMLInputElement | null;
+  const mobilePanel    = document.querySelector('.mobile-nav-panel') as HTMLElement | null;
+  const mobileLabel    = document.querySelector('label[for="mobile-menu"]') as HTMLElement | null;
+
+  if (mobileCheckbox && mobilePanel && mobileLabel) {
+    const openPanel = () => {
+      mobileCheckbox.checked = true;          // drives CSS icon swap
+      mobilePanel.classList.remove('is-closing');
+      mobilePanel.classList.add('is-open');
+    };
+
+    const closePanel = () => {
+      mobilePanel.classList.remove('is-open');
+      mobilePanel.classList.add('is-closing');
+      mobilePanel.addEventListener('animationend', () => {
+        mobilePanel.classList.remove('is-closing');
+        mobileCheckbox.checked = false;       // drives CSS icon swap back
+      }, { once: true });
+    };
+
+    mobileLabel.addEventListener('click', (e) => {
+      e.preventDefault();                     // block native checkbox toggle
+      mobilePanel.classList.contains('is-open') ? closePanel() : openPanel();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobilePanel.classList.contains('is-open')) closePanel();
+    });
+  }
+
+  // ── Desktop services dropdown ─────────────────────────────────
   const btn = document.getElementById('services-menu-btn');
   const menu = document.getElementById('services-menu');
   if (btn && menu) {

@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ContactForm from '../components/ContactForm.astro';
-import ContactDetail from '../components/ContactDetail.astro';
 import { getEntry } from 'astro:content';
 
 const entry = await getEntry('pages', 'contact');
@@ -24,29 +23,16 @@ const { intro, address, phones, email, instagram } = entry.data as unknown as Co
   description="Posa't en contacte amb Àbiòtic per a qualsevol consulta sobre serveis ambientals a Andorra. Telèfon, email i formulari de contacte."
 >
 
-  <!-- Hero — editorial, consistent with home -->
-  <section class="relative bg-white overflow-hidden border-b border-stone-100">
-    <div
-      class="absolute inset-0 pointer-events-none"
-      style="background-image: linear-gradient(to right, #e7e5e4 1px, transparent 1px), linear-gradient(to bottom, #e7e5e4 1px, transparent 1px); background-size: 80px 80px; opacity: 0.35;"
-    ></div>
-
-    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-8 h-px bg-secondary-500"></div>
-        <span class="text-brand-600 text-xs font-semibold uppercase tracking-[0.2em]">Contacte</span>
-      </div>
-      <h1 class="font-display text-5xl sm:text-6xl font-medium text-stone-900 leading-[1.15] max-w-lg">
-        Parlem del teu<br /><em class="font-normal italic text-brand-700">projecte.</em>
-      </h1>
-      <p class="mt-6 text-stone-500 text-lg leading-relaxed max-w-xl">{intro}</p>
-    </div>
-  </section>
+  <PageHero
+    title="Parlem del teu projecte."
+    subtitle={intro}
+    eyebrow="Contacte"
+  />
 
   <!-- Form + Contact info -->
   <section class="bg-white py-16 lg:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0 border border-stone-200">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-0 border border-stone-200" data-reveal>
 
         <!-- Form (7 cols) -->
         <div class="lg:col-span-7 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-stone-200">

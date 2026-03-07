@@ -31,19 +31,19 @@ const { title, subtitle, eyebrow, image, imageAlt = '' } = Astro.props;
 
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
       <!-- Eyebrow -->
-      <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center gap-4 mb-8 animate-fade-up">
         <div class="w-8 h-px bg-secondary-500"></div>
         <span class="text-secondary-400 text-xs font-semibold uppercase tracking-[0.2em]">
           {eyebrow ?? title}
         </span>
       </div>
 
-      <h1 class="font-display text-5xl sm:text-6xl font-medium text-white leading-[1.15] max-w-2xl">
+      <h1 class="font-display text-5xl sm:text-6xl font-medium text-white leading-[1.15] max-w-2xl animate-fade-up delay-100">
         {title}
       </h1>
 
       {subtitle && (
-        <p class="mt-6 text-brand-100/80 text-lg leading-relaxed max-w-xl">{subtitle}</p>
+        <p class="mt-6 text-brand-100/80 text-lg leading-relaxed max-w-xl animate-fade-up delay-200">{subtitle}</p>
       )}
     </div>
   </section>
@@ -58,19 +58,19 @@ const { title, subtitle, eyebrow, image, imageAlt = '' } = Astro.props;
 
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
       <!-- Eyebrow -->
-      <div class="flex items-center gap-4 mb-8">
+      <div class="flex items-center gap-4 mb-8 animate-fade-up">
         <div class="w-8 h-px bg-secondary-500"></div>
         <span class="text-brand-600 text-xs font-semibold uppercase tracking-[0.2em]">
           {eyebrow ?? title}
         </span>
       </div>
 
-      <h1 class="font-display text-5xl sm:text-6xl font-medium text-stone-900 leading-[1.15] max-w-2xl">
+      <h1 class="font-display text-5xl sm:text-6xl font-medium text-stone-900 leading-[1.15] max-w-2xl animate-fade-up delay-100">
         {title}
       </h1>
 
       {subtitle && (
-        <p class="mt-6 text-stone-500 text-lg leading-relaxed max-w-xl">{subtitle}</p>
+        <p class="mt-6 text-stone-500 text-lg leading-relaxed max-w-xl animate-fade-up delay-200">{subtitle}</p>
       )}
     </div>
   </section>

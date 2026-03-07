@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Pàgina no trobada — Àbiòtic">
+
+  <section class="relative bg-white overflow-hidden border-b border-stone-100">
+    <div
+      class="absolute inset-0 pointer-events-none"
+      style="background-image: linear-gradient(to right, #e7e5e4 1px, transparent 1px), linear-gradient(to bottom, #e7e5e4 1px, transparent 1px); background-size: 80px 80px; opacity: 0.35;"
+    ></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36 text-center">
+      <span class="font-display text-9xl font-medium text-stone-100 leading-none select-none block mb-4">404</span>
+      <h1 class="font-display text-3xl sm:text-4xl font-medium text-stone-900 mb-4">Pàgina no trobada</h1>
+      <p class="text-stone-500 text-lg mb-10 max-w-md mx-auto">
+        La pàgina que busques no existeix o ha estat moguda.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2.5 bg-secondary-500 text-brand-900 text-xs font-semibold px-7 py-4 hover:bg-secondary-400 transition-colors no-underline uppercase tracking-widest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2"
+      >
+        Torna a l'inici
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

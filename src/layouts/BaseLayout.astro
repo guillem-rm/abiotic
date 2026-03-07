@@ -85,5 +85,24 @@ const localBusinessSchema = {
       <slot />
     </main>
     <Footer />
+
+    <!-- Scroll-reveal observer -->
+    <script>
+      const reveals = document.querySelectorAll('[data-reveal], [data-reveal-stagger]');
+      if (reveals.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        reveals.forEach((el) => observer.observe(el));
+      }
+    </script>
   </body>
 </html>

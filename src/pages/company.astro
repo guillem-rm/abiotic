@@ -37,12 +37,14 @@ const { pullquote, standards, areas, values, cta } = entry.data as unknown as Co
     title="Qui som"
     subtitle="Empresa de gestió ambiental i consultoria tècnica al Principat d'Andorra."
     eyebrow="L'empresa"
+    image="/images/ambiental-edifici.png"
+    imageAlt="Edifici amb gestió ambiental a Andorra"
   />
 
   <!-- 2. Company introduction -->
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12" data-reveal>
 
         <!-- Prose body (2/3 width) -->
         <div class="md:col-span-2">
@@ -96,7 +98,7 @@ const { pullquote, standards, areas, values, cta } = entry.data as unknown as Co
   <section class="py-16 bg-stone-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading heading="Àrees d'activitat" />
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-stagger>
 
         <ServiceCard title={areas[0].title} description={areas[0].description} href={areas[0].href}>
           <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -125,7 +127,7 @@ const { pullquote, standards, areas, values, cta } = entry.data as unknown as Co
   <section class="py-16 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading heading="Els nostres valors" />
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8" data-reveal-stagger>
 
         <ValueItem title={values[0].title} description={values[0].description}>
           <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
