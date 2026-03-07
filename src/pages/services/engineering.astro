@@ -13,7 +13,7 @@ const allServices = await getCollection('services');
 const otherServices = allServices.filter((s) => s.id !== entry.id);
 ---
 
-<BaseLayout title={`${entry.data.title} — Àbiòtic`} description="Disseny de projectes tècnics i integració de noves tecnologies en enginyeria ambiental a Andorra.">
+<BaseLayout title={`${entry.data.title} — Àbiòtic`} description={entry.data.description}>
 
   <PageHero title={entry.data.title} subtitle={entry.data.description} />
 
