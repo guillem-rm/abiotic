@@ -19,7 +19,10 @@ interface ContactData {
 const { intro, address, phones, email, instagram } = entry.data as unknown as ContactData;
 ---
 
-<BaseLayout title="Contacte — Àbiòtic">
+<BaseLayout
+  title="Contacte — Àbiòtic"
+  description="Posa't en contacte amb Àbiòtic per a qualsevol consulta sobre serveis ambientals a Andorra. Telèfon, email i formulari de contacte."
+>
 
   <PageHero title="Contacta'ns" subtitle={intro} />
 

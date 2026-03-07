@@ -174,18 +174,18 @@ No server configuration needed — pure static output.
 
 ## Acceptance Criteria
 
-- [ ] All pages have unique `<title>` and `<meta name="description">`
-- [ ] Open Graph tags present on all pages
-- [ ] Canonical URL set on all pages
-- [ ] `sitemap-index.xml` accessible at `/sitemap-index.xml`
-- [ ] `robots.txt` accessible at `/robots.txt`
-- [ ] Favicon visible in browser tab
+- [x] All pages have unique `<title>` and `<meta name="description">`
+- [x] Open Graph tags present on all pages
+- [x] Canonical URL set on all pages
+- [x] `sitemap-index.xml` accessible at `/sitemap-index.xml`
+- [x] `robots.txt` accessible at `/robots.txt`
+- [x] Favicon visible in browser tab
 - [ ] Lighthouse Performance ≥ 90
 - [ ] Lighthouse Accessibility ≥ 90
 - [ ] Lighthouse SEO ≥ 90
 - [ ] Lighthouse Best Practices ≥ 90
 - [ ] Site deployed and accessible at production URL
-- [ ] `npm run build` passes with zero errors
+- [x] `npm run build` passes with zero errors
 
 ---
 
