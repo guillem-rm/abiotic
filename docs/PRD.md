@@ -224,3 +224,4 @@ Possible platforms:
 * Vercel
 * Netlify
 * GitHub Pages
+* Cloudflare Pages
