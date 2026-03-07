@@ -128,14 +128,14 @@ Apply `class="prose prose-stone max-w-none"` to Markdown content containers.
 
 ## Acceptance Criteria
 
-- [ ] `/company` renders all four sections with correct content
-- [ ] All three service routes render correctly with their respective content
-- [ ] Service pages link to each other via "Altres serveis"
-- [ ] `ServiceCard.astro` and `ValueItem.astro` are reused (no duplication)
-- [ ] Prose Markdown content is properly styled via Tailwind Typography
-- [ ] All pages are responsive at 375px and 1280px
-- [ ] No content is hard-coded — all text comes from Markdown collections
-- [ ] `npx astro check` passes with no type errors
+- [x] `/company` renders all four sections with correct content
+- [x] All three service routes render correctly with their respective content
+- [x] Service pages link to each other via "Altres serveis"
+- [x] `ServiceCard.astro` and `ValueItem.astro` are reused (no duplication)
+- [x] Prose Markdown content is properly styled via Tailwind Typography
+- [x] All pages are responsive at 375px and 1280px
+- [x] No content is hard-coded — all text comes from Markdown collections
+- [x] `npx astro check` passes with no type errors (0 errors, 0 warnings)
 
 ---
 

@@ -15,7 +15,9 @@ const services = defineCollection({
   loader: glob({ pattern: '*.md', base: './content/services' }),
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
+    description: z.string(),
+    services: z.array(z.string()),
+    applications: z.array(z.string()),
   }),
 });
 

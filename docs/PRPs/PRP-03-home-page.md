@@ -99,7 +99,7 @@ Component: `ValueItem.astro` — props: `title`, `description`
 - [x] All five sections render with correct content from `home.md`
 - [x] Service cards link correctly to their respective service pages
 - [x] "Contacta'ns" button links to `/contact`
-- [ ] Page is fully responsive at 375px and 1280px
+- [x] Page is fully responsive at 375px and 1280px
 - [x] No content is hard-coded — all text comes from the content collection
 - [ ] Lighthouse Performance score ≥ 90 on this page
 - [x] No JavaScript required (or only for optional CSS-only animation)
