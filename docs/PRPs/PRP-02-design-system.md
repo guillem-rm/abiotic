@@ -127,13 +127,13 @@ Bottom bar: `© {year} Àbiòtic. Tots els drets reservats.`
 
 ## Acceptance Criteria
 
-- [ ] All 6 pages render with header and footer correctly
-- [ ] Navigation links are correct and functional
-- [ ] Active page link is visually differentiated in the nav
-- [ ] Layout is responsive: readable on 375px and 1280px viewports
-- [ ] No JavaScript errors in browser console
-- [ ] Tailwind purges correctly — `npm run build` CSS is < 20 KB
-- [ ] `lang="ca"` is set on `<html>`
+- [x] All 6 pages render with header and footer correctly
+- [x] Navigation links are correct and functional
+- [x] Active page link is visually differentiated in the nav
+- [x] Layout is responsive: readable on 375px and 1280px viewports
+- [x] No JavaScript errors in browser console
+- [x] Tailwind purges correctly — `npm run build` CSS is < 20 KB (10.8 KB)
+- [x] `lang="ca"` is set on `<html>`
 
 ---
 
