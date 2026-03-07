@@ -11,6 +11,14 @@ if (!entry) throw new Error('environmental.md not found');
 
 const allServices = await getCollection('services');
 const otherServices = allServices.filter((s) => s.id !== entry.id);
+
+// Circular badge — each char individually positioned for perfect even spacing
+const badgeText = "MILLORANT L'ÚS DELS RECURSOS DE LA TERRA  \u00B7  ";
+const badgeCx = 104, badgeCy = 104, badgeR = 84;
+const badgeChars = badgeText.split('').map((char, i) => ({
+  char,
+  angle: -90 + i * (360 / badgeText.length),
+}));
 ---
 
 <BaseLayout title={`${entry.data.title} — Àbiòtic`} description={entry.data.description}>
@@ -87,6 +95,26 @@ const otherServices = allServices.filter((s) => s.id !== entry.id);
             width="800"
             height="900"
           />
+          <!-- Circular spinning text badge -->
+          <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-52 h-52 pointer-events-none" aria-hidden="true">
+            <!-- Subtle dark backdrop -->
+            <div class="absolute inset-0 rounded-full bg-brand-900/45 backdrop-blur-sm"></div>
+            <!-- Spinning text ring -->
+            <svg viewBox="0 0 208 208" width="208" height="208" class="absolute inset-0 animate-[spin_16s_linear_infinite]">
+              {badgeChars.map(({ char, angle }) => (
+                <text
+                  font-size="10"
+                  fill="white"
+                  font-weight="700"
+                  font-family="ui-sans-serif,system-ui,sans-serif"
+                  text-anchor="middle"
+                  transform={`translate(${badgeCx},${badgeCy}) rotate(${angle}) translate(0,${-badgeR})`}
+                >{char}</text>
+              ))}
+            </svg>
+            <!-- Static center symbol -->
+            <div class="absolute inset-0 flex items-center justify-center text-white font-serif leading-none select-none" style="font-size: 5rem;">"</div>
+          </div>
         </div>
 
       </div>
