@@ -31,7 +31,7 @@ No dubtis a contactar amb nosaltres per a qualsevol dubte que tinguis.
 - **Màquines especialitzades: control de clor i potabilització**
 - **Software de control de dipòsits**
 
-ABIÒTIC compta amb la digitalització del cicle de l'aigua amb la incorporació de noves tecnologies en gestió de l'aigua per optimitzar el servei.
+ÀBIÒTIC compta amb la digitalització del cicle de l'aigua amb la incorporació de noves tecnologies en gestió de l'aigua per optimitzar el servei.
 
 Disposem de dades en temps real de la xarxa d'aigua potable per actuar immediatament en situacions urgents (per exemple, una fuita) i planificar el manteniment i les actuacions de millora.
 
