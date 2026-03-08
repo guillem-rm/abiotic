@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ServiceBodyContent from '../components/ServiceBodyContent.astro';
 import { useTranslations, localePath } from '../i18n/utils';
 import { type Locale } from '../i18n/translations';
 
@@ -158,6 +159,17 @@ const badgeChars = config.badge
       </div>
     </div>
   </section>
+
+  <!-- Rich body content (optional) -->
+  {Astro.slots.has('body') && (
+    <section class="bg-white border-t border-stone-100">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <ServiceBodyContent>
+          <slot name="body" />
+        </ServiceBodyContent>
+      </div>
+    </section>
+  )}
 
   <!-- Other services -->
   <section class="bg-stone-50 py-20 border-t border-stone-200">

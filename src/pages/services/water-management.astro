@@ -1,6 +1,6 @@
 ---
 import ServiceTemplate from '../../templates/ServiceTemplate.astro';
-import { getEntry, getCollection } from 'astro:content';
+import { getEntry, getCollection, render } from 'astro:content';
 
 const entry = await getEntry('services', 'water-management');
 if (!entry) throw new Error('water-management.md not found');
@@ -9,6 +9,8 @@ const allServices = await getCollection('services');
 const otherServices = allServices
   .filter((s) => s.id !== entry.id)
   .map((s) => ({ title: s.data.title, description: s.data.description, href: `/services/${s.id}` }));
+
+const { Content } = await render(entry);
 ---
 
 <ServiceTemplate
@@ -19,4 +21,6 @@ const otherServices = allServices
   services={entry.data.services}
   applications={entry.data.applications}
   otherServices={otherServices}
-/>
+>
+  <Content slot="body" />
+</ServiceTemplate>

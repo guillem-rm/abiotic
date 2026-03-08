@@ -1,0 +1,362 @@
+---
+// ServiceBodyContent.astro
+// Richly styled prose for service detail body content.
+// Handles: numbered h2 sections, h3 subheads, custom lists, image zoom,
+// consecutive-image grids, decorated hr dividers, and scroll-reveal animations.
+---
+
+<div class="sb" id="sb-content">
+  <slot />
+</div>
+
+<style>
+  /* ── Custom properties ── */
+  .sb {
+    counter-reset: section;
+    --brand:       #0A6A88;
+    --brand-d:     #053d50;
+    --brand-l:     #cde9f4;
+    --brand-50:    #eef7fb;
+    --lime:        #95C121;
+    --lime-d:      #79a01a;
+    --stone-1:     #f5f5f4;
+    --stone-2:     #e7e5e4;
+    --stone-5:     #78716c;
+    --stone-6:     #57534e;
+    --stone-7:     #44403c;
+    --stone-9:     #1c1917;
+  }
+
+  /* ════════════════════════════════════
+     H2 — Numbered chapter headings
+     ════════════════════════════════════ */
+  .sb :global(h2) {
+    counter-increment: section;
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--brand);
+    margin: 4.5rem 0 1.5rem;
+    padding: 0 0 1rem 3rem;
+    position: relative;
+    border-bottom: 1px solid var(--brand-l);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  .sb :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  /* "01 / 02 / …" numeric prefix */
+  .sb :global(h2::before) {
+    content: counter(section, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+    font-family: 'InterVariable', 'Inter', system-ui, sans-serif;
+    font-style: normal;
+    font-size: 0.625em;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--lime);
+  }
+
+  /* Lime underline accent */
+  .sb :global(h2::after) {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 2.25rem;
+    height: 2px;
+    background: var(--lime);
+  }
+
+  /* ════════════════════════════════════
+     H3 — Sub-section headings
+     ════════════════════════════════════ */
+  .sb :global(h3) {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'InterVariable', 'Inter', system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--brand);
+    margin: 2.5rem 0 0.875rem;
+  }
+  .sb :global(h3::before) {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5px;
+    background: var(--lime);
+    flex-shrink: 0;
+  }
+
+  /* ════════════════════════════════════
+     Paragraphs & inline
+     ════════════════════════════════════ */
+  .sb :global(p) {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+    color: var(--stone-6);
+    margin: 0 0 1.25rem;
+  }
+  .sb :global(strong) {
+    color: var(--stone-9);
+    font-weight: 600;
+  }
+  .sb :global(a) {
+    color: var(--brand);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: color 180ms ease, text-decoration-color 180ms ease;
+  }
+  .sb :global(a:hover) {
+    color: var(--brand-d);
+    text-decoration-color: currentColor;
+  }
+
+  /* ════════════════════════════════════
+     Lists
+     ════════════════════════════════════ */
+  .sb :global(ul) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+  }
+  .sb :global(ul li) {
+    position: relative;
+    padding: 0.425rem 0 0.425rem 1.625rem;
+    font-size: 0.9375rem;
+    color: var(--stone-6);
+    line-height: 1.7;
+    border-bottom: 1px solid var(--stone-1);
+  }
+  .sb :global(ul li:last-child) { border-bottom: none; }
+  .sb :global(ul li::before) {
+    content: '';
+    position: absolute;
+    left: 0.375rem;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--lime);
+    transform: translateY(-50%);
+  }
+
+  /* ════════════════════════════════════
+     Horizontal rule
+     ════════════════════════════════════ */
+  .sb :global(hr) {
+    border: none;
+    height: 1px;
+    margin: 3.5rem -1rem;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--brand-l) 15%,
+      rgba(149, 193, 33, 0.35) 50%,
+      var(--brand-l) 85%,
+      transparent 100%
+    );
+  }
+  @media (min-width: 640px) {
+    .sb :global(hr) { margin-left: -2rem; margin-right: -2rem; }
+  }
+
+  /* ════════════════════════════════════
+     Images — single
+     ════════════════════════════════════ */
+  .sb :global(p:has(> img:only-child)) {
+    margin: 0;
+  }
+  .sb :global(img) {
+    display: block;
+    width: 100%;
+    max-height: 440px;
+    object-fit: cover;
+    object-position: center;
+    margin: 2.25rem 0;
+    border: 1px solid var(--stone-2);
+    transition: transform 700ms cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 300ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .sb :global(img:hover) {
+      transform: scale(1.016);
+      box-shadow: 0 16px 40px -10px rgba(10, 106, 136, 0.18);
+    }
+  }
+
+  /* ════════════════════════════════════
+     Images — consecutive grid (via JS)
+     ════════════════════════════════════ */
+  .sb :global(.sb-img-grid) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.375rem;
+    margin: 2.25rem 0;
+  }
+  .sb :global(.sb-img-grid.sb-grid-3) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 480px) {
+    .sb :global(.sb-img-grid) { grid-template-columns: 1fr; }
+    .sb :global(.sb-img-grid.sb-grid-3) { grid-template-columns: repeat(2, 1fr); }
+  }
+  .sb :global(.sb-img-grid img) {
+    margin: 0;
+    max-height: 260px;
+    height: 260px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* ════════════════════════════════════
+     Table
+     ════════════════════════════════════ */
+  .sb :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin: 1.5rem 0 2.25rem;
+    border: 1px solid var(--stone-2);
+  }
+  .sb :global(thead tr) {
+    background: var(--brand);
+    color: #fff;
+  }
+  .sb :global(th) {
+    padding: 0.75rem 1.125rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .sb :global(td) {
+    padding: 0.65rem 1.125rem;
+    border-top: 1px solid var(--stone-2);
+    color: var(--stone-7);
+  }
+  .sb :global(tbody tr:nth-child(even) td) { background: var(--stone-1); }
+  .sb :global(tbody tr) { transition: background 120ms; }
+  .sb :global(tbody tr:hover td) { background: var(--brand-50); }
+
+  /* ════════════════════════════════════
+     Reveal animation states
+     ════════════════════════════════════ */
+  .sb :global(.sb-reveal) {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sb :global(.sb-reveal.sb-in) {
+    opacity: 1;
+    transform: none;
+  }
+  .sb :global(.sb-d1) { transition-delay: 80ms; }
+  .sb :global(.sb-d2) { transition-delay: 160ms; }
+  .sb :global(.sb-d3) { transition-delay: 240ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sb :global(.sb-reveal) {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const sb = document.getElementById('sb-content');
+    if (!sb) return;
+
+    /* ── 1. Group consecutive single-image <p> into an image grid ── */
+    {
+      const kids = Array.from(sb.children);
+      let i = 0;
+
+      while (i < kids.length) {
+        const el = kids[i];
+        if (!el.parentNode) { i++; continue; } // already removed
+
+        const isImgP = (node: Element) =>
+          node.tagName === 'P' &&
+          node.children.length === 1 &&
+          (node.children[0] as HTMLElement).tagName === 'IMG';
+
+        if (!isImgP(el)) { i++; continue; }
+
+        // Find the run of consecutive image paragraphs
+        const run: Element[] = [el];
+        let j = i + 1;
+        while (j < kids.length && kids[j].parentNode && isImgP(kids[j])) {
+          run.push(kids[j]);
+          j++;
+        }
+
+        if (run.length >= 2) {
+          const grid = document.createElement('div');
+          grid.className = 'sb-img-grid' + (run.length >= 3 ? ' sb-grid-3' : '');
+          sb.insertBefore(grid, run[0]);
+          run.forEach((p) => {
+            const img = p.querySelector('img');
+            if (img) grid.appendChild(img);
+            p.remove();
+          });
+        }
+
+        i = j;
+      }
+    }
+
+    /* ── 2. Attach reveal classes ── */
+    // Section headings
+    sb.querySelectorAll('h2').forEach((el) => el.classList.add('sb-reveal'));
+
+    // Sub-headings with slight delay
+    sb.querySelectorAll('h3').forEach((el) => el.classList.add('sb-reveal', 'sb-d1'));
+
+    // Standalone images (not inside a grid)
+    sb.querySelectorAll('img').forEach((img) => {
+      if (!img.closest('.sb-img-grid')) img.classList.add('sb-reveal');
+    });
+
+    // Image grids: stagger each child
+    sb.querySelectorAll('.sb-img-grid').forEach((grid) => {
+      Array.from(grid.querySelectorAll('img')).forEach((img, idx) => {
+        img.classList.add('sb-reveal');
+        if (idx % 3 === 1) img.classList.add('sb-d1');
+        if (idx % 3 === 2) img.classList.add('sb-d2');
+      });
+    });
+
+    // Tables
+    sb.querySelectorAll('table').forEach((el) => el.classList.add('sb-reveal'));
+
+    /* ── 3. IntersectionObserver ── */
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add('sb-in');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -24px 0px' }
+    );
+
+    sb.querySelectorAll('.sb-reveal').forEach((el) => io.observe(el));
+  })();
+</script>
