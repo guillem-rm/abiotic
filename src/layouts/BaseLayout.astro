@@ -26,7 +26,7 @@ const localBusinessSchema = {
   '@type': 'LocalBusiness',
   name: 'Àbiòtic',
   url: 'https://abiotic.ad',
-  logo: 'https://abiotic.ad/favicon.svg',
+  logo: 'https://abiotic.ad/images/favicon.png',
   image: 'https://abiotic.ad/og-image.svg',
   description: 'Consultoria ambiental i gestió de recursos hídrics a Andorra.',
   telephone: ['+376877770', '+376677588'],
@@ -91,8 +91,8 @@ const alternates = locales.map((locale) => ({
     <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
   </head>
   <body class="flex flex-col min-h-screen">
     <Header lang={lang} />
