@@ -1,0 +1,17 @@
+---
+import ServiceTemplate from '../../../templates/ServiceTemplate.astro';
+import { servicesContent, getOtherServices } from '../../../i18n/translations';
+
+const data = servicesContent['environmental'].en;
+const otherServices = getOtherServices('en', 'environmental');
+---
+
+<ServiceTemplate
+  lang="en"
+  serviceId="environmental"
+  title={data.title}
+  description={data.description}
+  services={data.services}
+  applications={data.applications}
+  otherServices={otherServices}
+/>

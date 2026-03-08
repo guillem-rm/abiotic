@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { useTranslations, localePath } from '../i18n/utils';
+import { type Locale } from '../i18n/translations';
+
+interface OtherService {
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  lang: Locale;
+  serviceId: 'water-management' | 'environmental' | 'engineering';
+  title: string;
+  description: string;
+  services: string[];
+  applications: string[];
+  otherServices: OtherService[];
+}
+
+const { lang, serviceId, title, description, services, applications, otherServices } = Astro.props;
+const t = useTranslations(lang);
+
+// Per-service image and badge config
+const serviceConfig = {
+  'water-management': {
+    heroImage: '/images/water-central.png',
+    heroImageAlt: 'Central hídrica al Principat d\'Andorra',
+    sideImage: '/images/water-sala-bombes.png',
+    sideImageAlt: 'Sala de bombes i instal·lacions hídriques',
+    badge: null,
+  },
+  'environmental': {
+    heroImage: '/images/ambiental-edifici.png',
+    heroImageAlt: 'Edifici sostenible envoltat de vegetació',
+    sideImage: '/images/ambiental-edifici.png',
+    sideImageAlt: 'Consultoria ambiental — edifici sostenible',
+    badge: "MILLORANT L'ÚS DELS RECURSOS DE LA TERRA  ·  ",
+  },
+  'engineering': {
+    heroImage: '/images/enginyeria-caldera.png',
+    heroImageAlt: 'Instal·lació de calderes de biomassa',
+    sideImage: '/images/water-valve-detail.png',
+    sideImageAlt: 'Detall de vàlvula d\'instal·lació hídrica',
+    badge: null,
+  },
+} as const;
+
+const config = serviceConfig[serviceId];
+
+// Build circular badge chars if needed
+const badgeCx = 104, badgeCy = 104, badgeR = 84;
+const badgeChars = config.badge
+  ? config.badge.split('').map((char, i) => ({
+      char,
+      angle: -90 + i * (360 / config.badge!.length),
+    }))
+  : [];
+---
+
+<BaseLayout title={`${title} — Àbiòtic`} description={description}>
+
+  <PageHero
+    title={title}
+    subtitle={description}
+    eyebrow={t('services.eyebrow')}
+    image={config.heroImage}
+    imageAlt={config.heroImageAlt}
+  />
+
+  <!-- Main content -->
+  <section class="bg-white">
+    <!-- Mobile image -->
+    <div class="overflow-hidden lg:hidden">
+      <img
+        src={config.sideImage}
+        alt={config.sideImageAlt}
+        class="w-full h-[240px] sm:h-[300px] object-cover service-img-zoom"
+        loading="lazy"
+        width="1200"
+        height="300"
+      />
+    </div>
+
+    <!-- Split layout -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 lg:items-stretch" data-reveal>
+
+        <!-- Content: left 7 cols -->
+        <div class="lg:col-span-7 py-16 lg:py-20 lg:pr-14">
+
+          <!-- Services list -->
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-8 h-px bg-brand-500"></div>
+            <span class="text-brand-600 text-xs font-semibold uppercase tracking-[0.2em]">{t('services.areas')}</span>
+          </div>
+          <ul class="space-y-0 divide-y divide-stone-100 mb-10">
+            {services.map((item, i) => (
+              <li class="flex items-start gap-6 py-5">
+                <span class="font-display text-2xl font-medium text-stone-200 leading-none w-8 shrink-0 select-none mt-0.5">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="text-stone-700 leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Applications panel -->
+          <div class="border border-stone-200 p-8">
+            <div class="h-0.5 w-full bg-secondary-500 -mt-8 -mx-8 mb-8 relative" style="width: calc(100% + 4rem);"></div>
+            <p class="text-[10px] font-semibold text-stone-400 uppercase tracking-[0.2em] mb-5">{t('services.applications')}</p>
+            <div class="flex flex-wrap gap-2">
+              {applications.map((app) => (
+                <span class="inline-flex items-center px-3 py-1.5 text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-100">
+                  {app}
+                </span>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Image: right 5 cols, fills full height -->
+        <div class="hidden lg:block lg:col-span-5 relative overflow-hidden min-h-[500px]">
+          <img
+            src={config.sideImage}
+            alt={config.sideImageAlt}
+            class="absolute inset-0 w-full h-full object-cover service-img-zoom"
+            loading="lazy"
+            width="800"
+            height="900"
+          />
+          {config.badge && badgeChars.length > 0 && (
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-52 h-52 pointer-events-none" aria-hidden="true">
+              <div class="absolute inset-0 rounded-full bg-brand-900/45 backdrop-blur-sm"></div>
+              <svg viewBox="0 0 208 208" width="208" height="208" class="absolute inset-0 animate-[spin_16s_linear_infinite]">
+                {badgeChars.map(({ char, angle }) => (
+                  <text
+                    font-size="10"
+                    fill="white"
+                    font-weight="700"
+                    font-family="ui-sans-serif,system-ui,sans-serif"
+                    text-anchor="middle"
+                    transform={`translate(${badgeCx},${badgeCy}) rotate(${angle}) translate(0,${-badgeR})`}
+                  >{char}</text>
+                ))}
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center text-white font-serif leading-none select-none" style="font-size: 5rem;">"</div>
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Other services -->
+  <section class="bg-stone-50 py-20 border-t border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading heading={t('services.other')} subheading={t('services.otherSub')} />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-reveal-stagger>
+        {otherServices.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            href={s.href}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading={t('services.cta.heading')} cta={t('nav.contact')} href={localePath(lang, '/contact')} />
+
+</BaseLayout>

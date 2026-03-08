@@ -2,6 +2,8 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { getLangFromUrl, getLocaleUrl } from '../i18n/utils';
+import { locales, ogLocales, type Locale } from '../i18n/translations';
 
 interface Props {
   title?: string;
@@ -15,6 +17,7 @@ const {
   ogImage = '/og-image.svg',
 } = Astro.props;
 
+const lang: Locale = getLangFromUrl(Astro.url);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
 const ogImageURL = new URL(ogImage, Astro.site ?? Astro.url.origin).toString();
 
@@ -41,10 +44,16 @@ const localBusinessSchema = {
     name: 'Andorra',
   },
 };
+
+// Build hreflang alternate URLs for SEO
+const alternates = locales.map((locale) => ({
+  locale,
+  url: new URL(getLocaleUrl(locale, Astro.url.pathname), Astro.site ?? Astro.url.origin).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang="ca">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,12 +64,18 @@ const localBusinessSchema = {
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- hreflang alternates -->
+    {alternates.map(({ locale, url }) => (
+      <link rel="alternate" hreflang={locale} href={url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(getLocaleUrl('ca', Astro.url.pathname), Astro.site ?? Astro.url.origin).toString()} />
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:locale" content="ca_AD" />
+    <meta property="og:locale" content={ogLocales[lang]} />
     <meta property="og:site_name" content="Àbiòtic" />
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
@@ -80,11 +95,11 @@ const localBusinessSchema = {
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body class="flex flex-col min-h-screen">
-    <Header />
+    <Header lang={lang} />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer lang={lang} />
 
     <!-- Scroll-reveal observer -->
     <script>

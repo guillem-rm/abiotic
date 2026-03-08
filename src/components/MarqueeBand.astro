@@ -1,5 +1,9 @@
 ---
-const text = 'El potencial de les energies renovables és immens';
+interface Props {
+  text?: string;
+}
+
+const { text = 'El potencial de les energies renovables és immens' } = Astro.props;
 ---
 
 <section class="marquee-band overflow-hidden bg-brand-900 pt-6 pb-10 border-t border-b border-brand-800 select-none" aria-hidden="true">

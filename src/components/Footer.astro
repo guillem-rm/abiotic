@@ -1,15 +1,23 @@
 ---
+import { useTranslations, localePath } from '../i18n/utils';
+import { type Locale } from '../i18n/translations';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 
 const serviceLinks = [
-  { href: '/services/water-management', label: "Gestió d'Aigua" },
-  { href: '/services/environmental', label: 'Gestió Ambiental' },
-  { href: '/services/engineering', label: 'Enginyeria' },
+  { href: localePath(lang, '/services/water-management'), label: t('nav.services.water') },
+  { href: localePath(lang, '/services/environmental'), label: t('nav.services.environmental') },
+  { href: localePath(lang, '/services/engineering'), label: t('nav.services.engineering') },
 ];
 ---
 
 <footer class="bg-brand-900 border-t border-brand-800 mt-auto">
-  <!-- Top accent shimmer -->
   <div class="h-px" style="background: linear-gradient(to right, transparent, rgba(149,193,33,0.6), transparent);"></div>
 
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -17,30 +25,30 @@ const serviceLinks = [
 
       <!-- Column 1: Brand -->
       <div>
-        <a href="/" class="no-underline inline-block group" aria-label="Àbiòtic — Inici">
+        <a href={localePath(lang, '/')} class="no-underline inline-block group" aria-label="Àbiòtic — Inici">
           <span class="font-display text-2xl italic font-medium text-white group-hover:text-brand-200 transition-colors">Àbiòtic</span>
         </a>
         <p class="mt-3 text-sm text-brand-300/70 leading-relaxed">
-          Consultoria ambiental i gestió de recursos hídrics a Andorra.
+          {t('footer.tagline')}
         </p>
       </div>
 
       <!-- Column 2: Navigation -->
       <div>
-        <h3 class="text-[10px] font-semibold text-secondary-500 uppercase tracking-[0.2em] mb-4">Navegació</h3>
+        <h3 class="text-[10px] font-semibold text-secondary-500 uppercase tracking-[0.2em] mb-4">{t('footer.nav')}</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/" class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">Inici</a></li>
-          <li><a href="/company" class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">L'empresa</a></li>
+          <li><a href={localePath(lang, '/')} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.home')}</a></li>
+          <li><a href={localePath(lang, '/company')} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.company')}</a></li>
           {serviceLinks.map(({ href, label }) => (
             <li><a href={href} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{label}</a></li>
           ))}
-          <li><a href="/contact" class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">Contacte</a></li>
+          <li><a href={localePath(lang, '/contact')} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.contact')}</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Contact -->
       <div>
-        <h3 class="text-[10px] font-semibold text-secondary-500 uppercase tracking-[0.2em] mb-4">Contacte</h3>
+        <h3 class="text-[10px] font-semibold text-secondary-500 uppercase tracking-[0.2em] mb-4">{t('footer.contact')}</h3>
         <address class="not-italic text-sm text-brand-300/80 space-y-2">
           <p class="leading-relaxed">
             Sant Joan de Caselles, Edifici Vilaedra nº75<br />
@@ -68,8 +76,8 @@ const serviceLinks = [
   <div class="border-t border-brand-800/60">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <p class="text-xs text-brand-500 text-center">
-        &copy; {year} Àbiòtic. Tots els drets reservats. ·
-        <a href="/privacy" class="hover:text-brand-300 no-underline transition-colors">Política de Privacitat</a>
+        &copy; {year} Àbiòtic. {t('footer.rights')} ·
+        <a href={localePath(lang, '/privacy')} class="hover:text-brand-300 no-underline transition-colors">{t('footer.privacy')}</a>
       </p>
     </div>
   </div>
