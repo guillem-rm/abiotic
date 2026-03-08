@@ -1,6 +1,6 @@
 ---
 import { useTranslations, getLocaleUrl, localePath } from '../i18n/utils';
-import { locales, languageNames, type Locale } from '../i18n/translations';
+import { locales, languageNames, languageFlagImg, type Locale } from '../i18n/translations';
 
 interface Props {
   lang: Locale;
@@ -128,11 +128,9 @@ function isActive(href: string): boolean {
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="lang-menu"
-            class="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-stone-400 hover:text-brand-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            class="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-stone-400 hover:text-brand-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
-            <svg class="w-3.5 h-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21L15 3M3.75 9h16.5M3.75 15h16.5" />
-            </svg>
+            <img src={languageFlagImg[lang]} alt="" aria-hidden="true" class="w-5 h-3.5 object-cover rounded-sm" />
             {lang.toUpperCase()}
             <svg class="w-2.5 h-2.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -142,7 +140,7 @@ function isActive(href: string): boolean {
           <div
             id="lang-menu"
             role="menu"
-            class="absolute top-full right-0 mt-1 w-36 bg-white border border-stone-200 shadow-sm hidden group-hover/lang:block group-focus-within/lang:block z-10 before:absolute before:content-[''] before:h-2 before:w-full before:-top-2 before:left-0 dropdown-animate"
+            class="absolute top-full right-0 mt-1 w-44 bg-white border border-stone-200 shadow-sm hidden group-hover/lang:block group-focus-within/lang:block z-10 before:absolute before:content-[''] before:h-2 before:w-full before:-top-2 before:left-0 dropdown-animate"
           >
             <div class="h-px w-full bg-secondary-500"></div>
             {locales.map((locale) => (
@@ -151,12 +149,13 @@ function isActive(href: string): boolean {
                 role="menuitem"
                 hreflang={locale}
                 class:list={[
-                  'block px-4 py-2.5 text-[11px] font-semibold uppercase tracking-widest no-underline transition-colors border-l-2',
+                  'flex items-center gap-2.5 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-widest no-underline transition-colors border-l-2',
                   locale === lang
                     ? 'text-brand-700 bg-brand-50 border-l-secondary-500'
                     : 'text-stone-600 hover:text-brand-700 hover:bg-stone-50 border-l-transparent hover:border-l-secondary-300'
                 ]}
               >
+                <img src={languageFlagImg[locale]} alt="" aria-hidden="true" class="w-5 h-3.5 object-cover rounded-sm flex-shrink-0" />
                 {languageNames[locale]}
               </a>
             ))}
@@ -235,12 +234,13 @@ function isActive(href: string): boolean {
               href={getLocaleUrl(locale, pathname)}
               hreflang={locale}
               class:list={[
-                'px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest no-underline border transition-colors',
+                'flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest no-underline border transition-colors',
                 locale === lang
                   ? 'bg-secondary-500 text-brand-900 border-secondary-500'
                   : 'text-stone-500 border-stone-200 hover:text-brand-700 hover:border-brand-300'
               ]}
             >
+              <img src={languageFlagImg[locale]} alt="" aria-hidden="true" class="w-5 h-3.5 object-cover rounded-sm" />
               {locale.toUpperCase()}
             </a>
           ))}

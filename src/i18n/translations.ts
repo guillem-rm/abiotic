@@ -9,6 +9,13 @@ export const languageNames: Record<Locale, string> = {
   fr: 'Français',
 };
 
+export const languageFlagImg: Record<Locale, string> = {
+  ca: '/flags/ad.webp',
+  es: '/flags/es.webp',
+  en: '/flags/gb.webp',
+  fr: '/flags/fr.webp',
+};
+
 export const ogLocales: Record<Locale, string> = {
   ca: 'ca_AD',
   es: 'es_AD',
