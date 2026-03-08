@@ -41,7 +41,7 @@ const serviceConfig = {
     heroImageAlt: 'Edifici sostenible envoltat de vegetació',
     sideImage: '/images/ambiental-edifici.png',
     sideImageAlt: 'Consultoria ambiental — edifici sostenible',
-    badge: "MILLORANT L'ÚS DELS RECURSOS DE LA TERRA  ·  ",
+    badge: null,
   },
   'engineering': {
     heroImage: '/images/enginyeria-caldera.png',
@@ -54,14 +54,6 @@ const serviceConfig = {
 
 const config = serviceConfig[serviceId];
 
-// Build circular badge chars if needed
-const badgeCx = 104, badgeCy = 104, badgeR = 84;
-const badgeChars = config.badge
-  ? config.badge.split('').map((char, i) => ({
-      char,
-      angle: -90 + i * (360 / config.badge!.length),
-    }))
-  : [];
 ---
 
 <BaseLayout title={`${title} — Àbiòtic`} description={description}>
@@ -136,24 +128,6 @@ const badgeChars = config.badge
             width="800"
             height="900"
           />
-          {config.badge && badgeChars.length > 0 && (
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 w-52 h-52 pointer-events-none" aria-hidden="true">
-              <div class="absolute inset-0 rounded-full bg-brand-900/45 backdrop-blur-sm"></div>
-              <svg viewBox="0 0 208 208" width="208" height="208" class="absolute inset-0 animate-[spin_16s_linear_infinite]">
-                {badgeChars.map(({ char, angle }) => (
-                  <text
-                    font-size="10"
-                    fill="white"
-                    font-weight="700"
-                    font-family="ui-sans-serif,system-ui,sans-serif"
-                    text-anchor="middle"
-                    transform={`translate(${badgeCx},${badgeCy}) rotate(${angle}) translate(0,${-badgeR})`}
-                  >{char}</text>
-                ))}
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center text-white font-serif leading-none select-none" style="font-size: 5rem;">"</div>
-            </div>
-          )}
         </div>
 
       </div>
