@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoImg from '../assets/images/logo.png';
 import { useTranslations, getLocaleUrl, localePath } from '../i18n/utils';
 import { locales, languageNames, languageFlagImg, type Locale } from '../i18n/translations';
 
@@ -34,7 +36,7 @@ function isActive(href: string): boolean {
 
       <!-- Logo -->
       <a href={localePath(lang, '/')} class="no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2" aria-label="Àbiòtic — Inici">
-        <img src="/images/logo.png" alt="Àbiòtic Gestió Ambiental" class="h-9 w-auto" fetchpriority="high" width="2023" height="483" />
+        <Image src={logoImg} alt="Àbiòtic Gestió Ambiental" class="h-9 w-auto" fetchpriority="high" width={302} height={72} quality={90} />
       </a>
 
       <!-- Desktop nav -->
