@@ -1,4 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import waterCentralImg from '../assets/images/water-central.png';
+import waterSalaBombesImg from '../assets/images/water-sala-bombes.png';
+import ambientalEdificiImg from '../assets/images/ambiental-edifici.png';
+import enginyeriaCalderaImg from '../assets/images/enginyeria-caldera.png';
+import waterValveDetailImg from '../assets/images/water-valve-detail.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
@@ -30,27 +36,27 @@ const t = useTranslations(lang);
 // Per-service image and badge config
 const serviceConfig = {
   'water-management': {
-    heroImage: '/images/water-central.png',
+    heroImage: waterCentralImg,
     heroImageAlt: 'Central hídrica al Principat d\'Andorra',
-    sideImage: '/images/water-sala-bombes.png',
+    sideImage: waterSalaBombesImg,
     sideImageAlt: 'Sala de bombes i instal·lacions hídriques',
     badge: null,
   },
   'environmental': {
-    heroImage: '/images/ambiental-edifici.png',
+    heroImage: ambientalEdificiImg,
     heroImageAlt: 'Edifici sostenible envoltat de vegetació',
-    sideImage: '/images/ambiental-edifici.png',
+    sideImage: ambientalEdificiImg,
     sideImageAlt: 'Consultoria ambiental — edifici sostenible',
     badge: null,
   },
   'engineering': {
-    heroImage: '/images/enginyeria-caldera.png',
+    heroImage: enginyeriaCalderaImg,
     heroImageAlt: 'Instal·lació de calderes de biomassa',
-    sideImage: '/images/water-valve-detail.png',
+    sideImage: waterValveDetailImg,
     sideImageAlt: 'Detall de vàlvula d\'instal·lació hídrica',
     badge: null,
   },
-} as const;
+};
 
 const config = serviceConfig[serviceId];
 
@@ -70,13 +76,13 @@ const config = serviceConfig[serviceId];
   <section class="bg-white">
     <!-- Mobile image -->
     <div class="overflow-hidden lg:hidden">
-      <img
+      <Image
         src={config.sideImage}
         alt={config.sideImageAlt}
         class="w-full h-[240px] sm:h-[300px] object-cover service-img-zoom"
         loading="lazy"
-        width="1200"
-        height="300"
+        widths={[640, 1024]}
+        sizes="100vw"
       />
     </div>
 
@@ -106,7 +112,7 @@ const config = serviceConfig[serviceId];
           <!-- Applications panel -->
           <div class="border border-stone-200 p-8">
             <div class="h-0.5 w-full bg-secondary-500 -mt-8 -mx-8 mb-8 relative" style="width: calc(100% + 4rem);"></div>
-            <p class="text-[10px] font-semibold text-stone-400 uppercase tracking-[0.2em] mb-5">{t('services.applications')}</p>
+            <p class="text-[10px] font-semibold text-stone-500 uppercase tracking-[0.2em] mb-5">{t('services.applications')}</p>
             <div class="flex flex-wrap gap-2">
               {applications.map((app) => (
                 <span class="inline-flex items-center px-3 py-1.5 text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-100">
@@ -120,13 +126,13 @@ const config = serviceConfig[serviceId];
 
         <!-- Image: right 5 cols, fills full height -->
         <div class="hidden lg:block lg:col-span-5 relative overflow-hidden min-h-[500px]">
-          <img
+          <Image
             src={config.sideImage}
             alt={config.sideImageAlt}
             class="absolute inset-0 w-full h-full object-cover service-img-zoom"
             loading="lazy"
-            width="800"
-            height="900"
+            widths={[600, 900]}
+            sizes="(min-width: 1024px) 40vw, 100vw"
           />
         </div>
 

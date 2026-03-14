@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import waterDamImg from '../assets/images/water-dam.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -22,14 +24,13 @@ const t = useTranslations(lang);
 
   <!-- 1. Hero — dark full-bleed image -->
   <section class="relative overflow-hidden bg-brand-900 border-b border-brand-800 flex items-center" style="height: calc(100vh - 4rem); min-height: 580px;">
-    <img
-      src="/images/water-dam.png"
+    <Image
+      src={waterDamImg}
       alt=""
       aria-hidden="true"
       class="absolute inset-0 w-full h-full object-cover object-center"
       fetchpriority="high"
-      width="1600"
-      height="900"
+      loading="eager"
     />
     <div class="absolute inset-0" style="background: linear-gradient(108deg, rgba(5,61,80,0.97) 0%, rgba(5,61,80,0.93) 28%, rgba(5,61,80,0.68) 52%, rgba(5,61,80,0.22) 100%);"></div>
     <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px); background-size: 38px 38px;"></div>
@@ -112,7 +113,7 @@ const t = useTranslations(lang);
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-baseline justify-between pb-8 mb-10 border-b border-stone-200">
         <h2 class="font-display text-3xl font-medium text-stone-900">{t('home.services.title')}</h2>
-        <p class="text-stone-400 text-sm hidden sm:block">{t('home.services.subtitle')}</p>
+        <p class="text-stone-500 text-sm hidden sm:block">{t('home.services.subtitle')}</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-stagger>
 
@@ -165,11 +166,11 @@ const t = useTranslations(lang);
                 <div class="grid grid-cols-2 gap-6">
                   <div>
                     <p class="font-display text-2xl font-medium text-brand-700">ISO</p>
-                    <p class="text-[10px] text-stone-400 mt-1 uppercase tracking-widest">14001 · EMAS</p>
+                    <p class="text-[10px] text-stone-500 mt-1 uppercase tracking-widest">14001 · EMAS</p>
                   </div>
                   <div>
                     <p class="font-display text-2xl font-medium text-brand-700">5+</p>
-                    <p class="text-[10px] text-stone-400 mt-1 uppercase tracking-widest">{t('home.mission.years')}</p>
+                    <p class="text-[10px] text-stone-500 mt-1 uppercase tracking-widest">{t('home.mission.years')}</p>
                   </div>
                 </div>
               </div>
@@ -190,7 +191,7 @@ const t = useTranslations(lang);
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-baseline justify-between pb-8 mb-10 border-b border-stone-200">
         <h2 class="font-display text-3xl font-medium text-stone-900">{t('home.values.title')}</h2>
-        <p class="text-stone-400 text-sm hidden sm:block">{t('home.values.subtitle')}</p>
+        <p class="text-stone-500 text-sm hidden sm:block">{t('home.values.subtitle')}</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200" data-reveal-stagger>
 

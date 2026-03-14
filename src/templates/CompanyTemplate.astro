@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import ambientalEdificiImg from '../assets/images/ambiental-edifici.png';
+import oficinAbiotic from '../assets/images/oficina-abiotic.jpg';
+import certificatIso14001 from '../assets/images/certificat-iso14001.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
@@ -28,7 +32,7 @@ const t = useTranslations(lang);
     title={t('company.hero.title')}
     subtitle={t('company.hero.subtitle')}
     eyebrow={t('company.eyebrow')}
-    image="/images/ambiental-edifici.png"
+    image={ambientalEdificiImg}
     imageAlt="Edifici amb gestió ambiental a Andorra"
   />
 
@@ -56,14 +60,12 @@ const t = useTranslations(lang);
 
           <!-- ISO certification badge -->
           <div class="mt-8 pt-6 border-t border-stone-100">
-            <p class="text-[10px] font-semibold text-stone-400 uppercase tracking-[0.2em] mb-4">{t('company.certLabel')}</p>
-            <img
-              src="/images/certificat-iso14001.png"
+            <p class="text-[10px] font-semibold text-stone-500 uppercase tracking-[0.2em] mb-4">{t('company.certLabel')}</p>
+            <Image
+              src={certificatIso14001}
               alt="Certificació ISO 14001:2015 — IAS Accredited Management Systems Certification Body / G-CERT"
               class="h-16 w-auto"
               loading="lazy"
-              width="400"
-              height="64"
             />
           </div>
         </div>
@@ -72,13 +74,13 @@ const t = useTranslations(lang);
         <div class="hidden md:block">
           <div class="sticky top-24 space-y-4">
             <div class="overflow-hidden border border-stone-200">
-              <img
-                src="/images/oficina-abiotic.jpg"
+              <Image
+                src={oficinAbiotic}
                 alt="Seu d'Àbiòtic Gestió Ambiental a Andorra"
                 class="w-full h-48 object-cover object-center"
                 loading="lazy"
-                width="800"
-                height="533"
+                widths={[400, 800]}
+                sizes="(min-width: 768px) 33vw, 100vw"
               />
             </div>
             <div class="border border-stone-200 overflow-hidden">
