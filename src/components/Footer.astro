@@ -28,7 +28,7 @@ const serviceLinks = [
         <a href={localePath(lang, '/')} class="no-underline inline-block group" aria-label="Àbiòtic — Inici">
           <span class="font-display text-2xl italic font-medium text-white group-hover:text-brand-200 transition-colors">Àbiòtic</span>
         </a>
-        <p class="mt-3 text-sm text-brand-300/70 leading-relaxed">
+        <p class="mt-3 text-sm text-brand-300 leading-relaxed">
           {t('footer.tagline')}
         </p>
       </div>
@@ -37,32 +37,32 @@ const serviceLinks = [
       <div>
         <h3 class="text-[10px] font-semibold text-secondary-500 uppercase tracking-[0.2em] mb-4">{t('footer.nav')}</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={localePath(lang, '/')} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.home')}</a></li>
-          <li><a href={localePath(lang, '/company')} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.company')}</a></li>
+          <li><a href={localePath(lang, '/')} class="block py-1 text-brand-300 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.home')}</a></li>
+          <li><a href={localePath(lang, '/company')} class="block py-1 text-brand-300 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.company')}</a></li>
           {serviceLinks.map(({ href, label }) => (
-            <li><a href={href} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{label}</a></li>
+            <li><a href={href} class="block py-1 text-brand-300 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{label}</a></li>
           ))}
-          <li><a href={localePath(lang, '/contact')} class="text-brand-300/80 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.contact')}</a></li>
+          <li><a href={localePath(lang, '/contact')} class="block py-1 text-brand-300 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">{t('nav.contact')}</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Contact -->
       <div>
         <h3 class="text-[10px] font-semibold text-secondary-500 uppercase tracking-[0.2em] mb-4">{t('footer.contact')}</h3>
-        <address class="not-italic text-sm text-brand-300/80 space-y-2">
+        <address class="not-italic text-sm text-brand-300 space-y-2">
           <p class="leading-relaxed">
             Sant Joan de Caselles, Edifici Vilaedra nº75<br />
             AD100 Canillo, Principat d'Andorra
           </p>
           <p>
-            <a href="tel:+376877770" class="hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">+376 877 770</a><br />
-            <a href="tel:+376677588" class="hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">+376 677 588</a>
+            <a href="tel:+376877770" class="inline-block py-1 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">+376 877 770</a><br />
+            <a href="tel:+376677588" class="inline-block py-1 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">+376 677 588</a>
           </p>
           <p>
-            <a href="mailto:abiotic.and@gmail.com" class="hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">abiotic.and@gmail.com</a>
+            <a href="mailto:abiotic.and@gmail.com" class="inline-block py-1 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">abiotic.and@gmail.com</a>
           </p>
           <p>
-            <a href="https://www.instagram.com/_abiotic_/" target="_blank" rel="noopener noreferrer" class="hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">
+            <a href="https://www.instagram.com/_abiotic_/" target="_blank" rel="noopener noreferrer" class="inline-block py-1 hover:text-white no-underline transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-300 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900">
               Instagram
             </a>
           </p>
@@ -75,9 +75,9 @@ const serviceLinks = [
   <!-- Bottom bar -->
   <div class="border-t border-brand-800/60">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <p class="text-xs text-brand-500 text-center">
+      <p class="text-xs text-brand-300 text-center">
         &copy; {year} Àbiòtic. {t('footer.rights')} ·
-        <a href={localePath(lang, '/privacy')} class="hover:text-brand-300 no-underline transition-colors">{t('footer.privacy')}</a>
+        <a href={localePath(lang, '/privacy')} class="inline-block py-0.5 hover:text-white no-underline transition-colors">{t('footer.privacy')}</a>
       </p>
     </div>
   </div>

@@ -43,7 +43,7 @@ function isActive(href: string): boolean {
         <a
           href={localePath(lang, '/')}
           class:list={[
-            'text-[11px] font-semibold uppercase tracking-widest no-underline transition-colors pb-0.5',
+            'text-[11px] font-semibold uppercase tracking-widest no-underline transition-colors pt-2 pb-1',
             isActive(localePath(lang, '/'))
               ? 'text-brand-700 border-b border-secondary-500'
               : 'text-stone-500 hover:text-brand-700 border-b border-transparent hover:border-secondary-300'
@@ -55,7 +55,7 @@ function isActive(href: string): boolean {
         <a
           href={localePath(lang, '/company')}
           class:list={[
-            'text-[11px] font-semibold uppercase tracking-widest no-underline transition-colors pb-0.5',
+            'text-[11px] font-semibold uppercase tracking-widest no-underline transition-colors pt-2 pb-1',
             isActive(localePath(lang, '/company'))
               ? 'text-brand-700 border-b border-secondary-500'
               : 'text-stone-500 hover:text-brand-700 border-b border-transparent hover:border-secondary-300'
@@ -72,7 +72,7 @@ function isActive(href: string): boolean {
             aria-expanded="false"
             aria-controls="services-menu"
             class:list={[
-              'flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest transition-colors pb-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
+              'flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest transition-colors pt-2 pb-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2',
               isServicesActive
                 ? 'text-brand-700 border-b border-brand-500'
                 : 'text-stone-500 hover:text-brand-700 border-b border-transparent hover:border-brand-300'
@@ -128,7 +128,7 @@ function isActive(href: string): boolean {
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="lang-menu"
-            class="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-stone-500 hover:text-brand-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
+            class="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-widest text-stone-500 hover:text-brand-700 transition-colors py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2"
           >
             <img src={languageFlagImg[lang]} alt="" aria-hidden="true" class="w-5 h-3.5 object-cover rounded-sm" />
             {lang.toUpperCase()}
