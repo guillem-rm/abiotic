@@ -23,6 +23,9 @@ const { title, subtitle, eyebrow, image, imageAlt = '' } = Astro.props;
       class="absolute inset-0 w-full h-full object-cover object-center"
       fetchpriority="high"
       loading="eager"
+      widths={[640, 1024, 1440, 1920]}
+      sizes="100vw"
+      quality={72}
     />
     <!-- Gradient: semi-transparent top fading to opaque bottom -->
     <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(5,61,80,0.55) 0%, rgba(5,61,80,0.92) 100%);"></div>
