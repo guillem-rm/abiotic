@@ -58,7 +58,7 @@ const t = useTranslations(lang);
           <div class="space-y-8 flex-1">
 
             <div>
-              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.address')}</p>
+              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.address')}</p>
               <p class="text-white text-sm leading-relaxed">
                 {address.street}<br />
                 {address.city}<br />
@@ -69,7 +69,7 @@ const t = useTranslations(lang);
             <div class="w-full h-px bg-white/10"></div>
 
             <div>
-              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.phone')}</p>
+              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.phone')}</p>
               <div class="space-y-1">
                 {phones.map((phone) => (
                   <a
@@ -85,7 +85,7 @@ const t = useTranslations(lang);
             <div class="w-full h-px bg-white/10"></div>
 
             <div>
-              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.email')}</p>
+              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.email')}</p>
               <a
                 href={`mailto:${email}`}
                 class="text-white text-sm hover:text-brand-200 transition-colors no-underline"
@@ -97,7 +97,7 @@ const t = useTranslations(lang);
             <div class="w-full h-px bg-white/10"></div>
 
             <div>
-              <p class="text-brand-200 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.social')}</p>
+              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.social')}</p>
               <a
                 href={instagram}
                 target="_blank"
@@ -115,7 +115,7 @@ const t = useTranslations(lang);
 
           </div>
 
-          <p class="font-display text-7xl font-medium text-white/5 leading-none select-none mt-12 text-right">Àb.</p>
+          <p class="font-display text-7xl font-medium text-white/5 leading-none select-none mt-12 text-right" aria-hidden="true">Àb.</p>
 
         </div>
 

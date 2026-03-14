@@ -283,41 +283,33 @@
 
     /* ── 1. Group consecutive single-image <p> into an image grid ── */
     {
+      const isImgP = (node: Element) =>
+        node.tagName === 'P' &&
+        node.children.length === 1 &&
+        (node.children[0] as HTMLElement).tagName === 'IMG';
+
+      // READ phase: identify all runs before touching the DOM
       const kids = Array.from(sb.children);
+      const runs: Element[][] = [];
       let i = 0;
-
       while (i < kids.length) {
-        const el = kids[i];
-        if (!el.parentNode) { i++; continue; } // already removed
-
-        const isImgP = (node: Element) =>
-          node.tagName === 'P' &&
-          node.children.length === 1 &&
-          (node.children[0] as HTMLElement).tagName === 'IMG';
-
-        if (!isImgP(el)) { i++; continue; }
-
-        // Find the run of consecutive image paragraphs
-        const run: Element[] = [el];
+        if (!isImgP(kids[i])) { i++; continue; }
+        const run: Element[] = [kids[i]];
         let j = i + 1;
-        while (j < kids.length && kids[j].parentNode && isImgP(kids[j])) {
-          run.push(kids[j]);
-          j++;
-        }
-
-        if (run.length >= 2) {
-          const grid = document.createElement('div');
-          grid.className = 'sb-img-grid' + (run.length >= 3 ? ' sb-grid-3' : '');
-          sb.insertBefore(grid, run[0]);
-          run.forEach((p) => {
-            const img = p.querySelector('img');
-            if (img) grid.appendChild(img);
-            p.remove();
-          });
-        }
-
+        while (j < kids.length && isImgP(kids[j])) { run.push(kids[j]); j++; }
+        if (run.length >= 2) runs.push(run);
         i = j;
       }
+
+      // WRITE phase: batch all DOM mutations after reads are done
+      runs.forEach((run) => {
+        const imgs = run.map((p) => p.querySelector('img')).filter(Boolean) as HTMLImageElement[];
+        const grid = document.createElement('div');
+        grid.className = 'sb-img-grid' + (run.length >= 3 ? ' sb-grid-3' : '');
+        run[0].before(grid);
+        imgs.forEach((img) => grid.appendChild(img));
+        run.forEach((p) => p.remove());
+      });
     }
 
     /* ── 2. Attach reveal classes ── */
