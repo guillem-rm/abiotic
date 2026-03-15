@@ -3,7 +3,7 @@ import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import { getLangFromUrl, getLocaleUrl } from '../i18n/utils';
+import { getLangFromUrl, getLocaleUrl, useTranslations } from '../i18n/utils';
 import { locales, ogLocales, type Locale } from '../i18n/translations';
 
 interface Props {
@@ -15,16 +15,17 @@ interface Props {
 const {
   title = 'Àbiòtic — Consultoria Ambiental Andorra',
   description,
-  ogImage = '/og-image.svg',
+  ogImage = '/og-image.png',
 } = Astro.props;
 
 const lang: Locale = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
 const ogImageURL = new URL(ogImage, Astro.site ?? Astro.url.origin).toString();
 
 const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'ProfessionalService'],
   name: 'Àbiòtic',
   url: 'https://abiotic.ad',
   logo: 'https://abiotic.ad/images/favicon.png',
@@ -44,6 +45,15 @@ const localBusinessSchema = {
     '@type': 'Country',
     name: 'Andorra',
   },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Serveis de consultoria ambiental',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: "Gestió d'Aigua" } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Gestió Ambiental' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Enginyeria' } },
+    ],
+  },
 };
 
 // Build hreflang alternate URLs for SEO
@@ -59,6 +69,7 @@ const alternates = locales.map((locale) => ({
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#053d50" />
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
 
@@ -81,6 +92,8 @@ const alternates = locales.map((locale) => ({
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content={title} />
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -99,8 +112,15 @@ const alternates = locales.map((locale) => ({
     <link rel="apple-touch-icon" href="/images/favicon.png" />
   </head>
   <body class="flex flex-col min-h-screen">
+    <!-- Skip to main content — keyboard/screen reader accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-secondary-500 focus:text-brand-900 focus:text-xs focus:font-semibold focus:uppercase focus:tracking-widest focus:no-underline"
+    >
+      {t('a11y.skipToContent')}
+    </a>
     <Header lang={lang} />
-    <main class="flex-1">
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
     <Footer lang={lang} />

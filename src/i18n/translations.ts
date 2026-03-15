@@ -87,7 +87,11 @@ export const ui = {
     'services.other': 'Altres serveis',
     'services.otherSub': 'Explorar més àrees',
     'services.cta.heading': 'Parlem del teu projecte',
+    'home.services.cta': 'Veure servei',
     'marquee.text': 'El potencial de les energies renovables és immens',
+    'a11y.skipToContent': 'Salta al contingut principal',
+    'ui.scroll': 'Desplaça',
+    'nav.language': 'Idioma',
   },
   es: {
     'nav.home': 'Inicio',
@@ -150,7 +154,11 @@ export const ui = {
     'services.other': 'Otros servicios',
     'services.otherSub': 'Explorar más áreas',
     'services.cta.heading': 'Hablemos de tu proyecto',
+    'home.services.cta': 'Ver servicio',
     'marquee.text': 'El potencial de las energías renovables es inmenso',
+    'a11y.skipToContent': 'Saltar al contenido principal',
+    'ui.scroll': 'Desplaza',
+    'nav.language': 'Idioma',
   },
   en: {
     'nav.home': 'Home',
@@ -213,7 +221,11 @@ export const ui = {
     'services.other': 'Other services',
     'services.otherSub': 'Explore more areas',
     'services.cta.heading': "Let's talk about your project",
+    'home.services.cta': 'View service',
     'marquee.text': 'The potential of renewable energy is immense',
+    'a11y.skipToContent': 'Skip to main content',
+    'ui.scroll': 'Scroll',
+    'nav.language': 'Language',
   },
   fr: {
     'nav.home': 'Accueil',
@@ -276,7 +288,11 @@ export const ui = {
     'services.other': 'Autres services',
     'services.otherSub': "Explorer d'autres domaines",
     'services.cta.heading': 'Parlons de votre projet',
+    'home.services.cta': 'Voir le service',
     'marquee.text': 'Le potentiel des énergies renouvelables est immense',
+    'a11y.skipToContent': 'Passer au contenu principal',
+    'ui.scroll': 'Défiler',
+    'nav.language': 'Langue',
   },
 } as const;
 

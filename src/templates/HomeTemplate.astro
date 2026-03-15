@@ -38,8 +38,8 @@ const t = useTranslations(lang);
     <div class="absolute inset-0" style="background: linear-gradient(108deg, rgba(5,61,80,0.97) 0%, rgba(5,61,80,0.93) 28%, rgba(5,61,80,0.68) 52%, rgba(5,61,80,0.22) 100%);"></div>
     <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px); background-size: 38px 38px;"></div>
     <div class="absolute bottom-0 left-0 right-0 h-px" style="background: linear-gradient(to right, transparent, rgba(149,193,33,0.5), transparent);"></div>
-    <div class="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-1.5 animate-bounce" aria-hidden="true">
-      <span class="text-white/40 text-[9px] uppercase tracking-[0.2em] font-semibold">Scroll</span>
+    <div class="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-1.5 animate-scroll-hint" aria-hidden="true">
+      <span class="text-white/40 text-[10px] uppercase tracking-[0.2em] font-semibold">{t('ui.scroll')}</span>
       <svg class="w-5 h-5 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
@@ -91,21 +91,21 @@ const t = useTranslations(lang);
   </section>
 
   <!-- Stats strip -->
-  <section class="relative bg-brand-700 overflow-hidden" data-reveal>
+  <section class="relative bg-brand-700 overflow-hidden">
     <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 32px 32px;"></div>
     <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+      <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10" data-reveal-stagger>
         <div class="py-9 px-6 text-center">
           <p class="font-display text-4xl font-medium text-white tracking-tight">2019</p>
-          <p class="text-secondary-400 text-[9px] uppercase tracking-[0.2em] mt-2">{t('home.stats.founded')}</p>
+          <p class="text-secondary-400 text-[10px] uppercase tracking-[0.2em] mt-2">{t('home.stats.founded')}</p>
         </div>
         <div class="py-9 px-6 text-center">
           <p class="font-display text-4xl font-medium text-white tracking-tight">3</p>
-          <p class="text-secondary-400 text-[9px] uppercase tracking-[0.2em] mt-2">{t('home.stats.areas')}</p>
+          <p class="text-secondary-400 text-[10px] uppercase tracking-[0.2em] mt-2">{t('home.stats.areas')}</p>
         </div>
         <div class="py-9 px-6 text-center">
-          <p class="font-display text-4xl font-medium text-white tracking-tight">AND</p>
-          <p class="text-secondary-400 text-[9px] uppercase tracking-[0.2em] mt-2">{t('home.stats.presence')}</p>
+          <p class="font-display text-4xl font-medium text-white tracking-tight">Andorra</p>
+          <p class="text-secondary-400 text-[10px] uppercase tracking-[0.2em] mt-2">{t('home.stats.presence')}</p>
         </div>
       </div>
     </div>
@@ -120,19 +120,19 @@ const t = useTranslations(lang);
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-stagger>
 
-        <ServiceCard title={services[0].title} description={services[0].description} href={services[0].href}>
+        <ServiceCard title={services[0].title} description={services[0].description} href={services[0].href} cta={t('home.services.cta')}>
           <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25c0 0-6.75 7.313-6.75 11.25a6.75 6.75 0 0013.5 0C18.75 9.563 12 2.25 12 2.25z" />
           </svg>
         </ServiceCard>
 
-        <ServiceCard title={services[1].title} description={services[1].description} href={services[1].href}>
+        <ServiceCard title={services[1].title} description={services[1].description} href={services[1].href} cta={t('home.services.cta')}>
           <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 01-6.364-2.636C3.25 16.08 3 12 3 12s3.25.08 5.636 2.364A9 9 0 0012 21zm0 0a9 9 0 006.364-2.636C20.75 16.08 21 12 21 12s-3.25.08-5.636 2.364A9 9 0 0112 21zm0 0V9m0 0a3 3 0 100-6 3 3 0 000 6z" />
           </svg>
         </ServiceCard>
 
-        <ServiceCard title={services[2].title} description={services[2].description} href={services[2].href}>
+        <ServiceCard title={services[2].title} description={services[2].description} href={services[2].href} cta={t('home.services.cta')}>
           <svg slot="icon" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -198,23 +198,13 @@ const t = useTranslations(lang);
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200" data-reveal-stagger>
 
-        <div class="py-8 sm:pr-10">
-          <span class="font-display text-6xl font-medium text-stone-100 leading-none block select-none">01</span>
-          <h3 class="text-sm font-semibold text-brand-700 mt-3 mb-2 uppercase tracking-wide">{values[0].title}</h3>
-          <p class="text-sm text-stone-600 leading-relaxed">{values[0].description}</p>
-        </div>
-
-        <div class="py-8 sm:px-10">
-          <span class="font-display text-6xl font-medium text-stone-100 leading-none block select-none">02</span>
-          <h3 class="text-sm font-semibold text-brand-700 mt-3 mb-2 uppercase tracking-wide">{values[1].title}</h3>
-          <p class="text-sm text-stone-600 leading-relaxed">{values[1].description}</p>
-        </div>
-
-        <div class="py-8 sm:pl-10">
-          <span class="font-display text-6xl font-medium text-stone-100 leading-none block select-none">03</span>
-          <h3 class="text-sm font-semibold text-brand-700 mt-3 mb-2 uppercase tracking-wide">{values[2].title}</h3>
-          <p class="text-sm text-stone-600 leading-relaxed">{values[2].description}</p>
-        </div>
+        {values.map((value, i) => (
+          <div class:list={['py-8', i === 0 ? 'sm:pr-10' : i === values.length - 1 ? 'sm:pl-10' : 'sm:px-10']}>
+            <span class="font-display text-6xl font-medium text-stone-200 leading-none block select-none">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="text-sm font-semibold text-brand-700 mt-3 mb-2 uppercase tracking-wide">{value.title}</h3>
+            <p class="text-sm text-stone-600 leading-relaxed">{value.description}</p>
+          </div>
+        ))}
 
       </div>
     </div>
