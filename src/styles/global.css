@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-white antialiased;
     color: #1A1A1A;
@@ -25,6 +28,11 @@
   to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
+@keyframes scrollHint {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
 @layer utilities {
   .animate-fade-up {
     animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -33,6 +41,9 @@
   .delay-200 { animation-delay: 200ms; }
   .delay-300 { animation-delay: 300ms; }
   .delay-400 { animation-delay: 400ms; }
+  .animate-scroll-hint {
+    animation: scrollHint 1.6s ease-in-out 1s infinite;
+  }
 }
 
 /* Scroll-reveal: elements fade up when entering viewport */
@@ -112,6 +123,11 @@
   animation: dropdownIn 200ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* ServiceCard accent bar — always visible at full height on touch devices */
+.service-card-bar {
+  height: 3px;
+}
+
 /* ServiceCard hover — card lift */
 @media (hover: hover) and (pointer: fine) {
   .service-card-hover {
@@ -125,9 +141,8 @@
     box-shadow: 0 16px 24px -6px rgb(0 0 0 / 0.10), 0 6px 10px -4px rgb(0 0 0 / 0.07);
   }
 
-  /* Accent bar: scaleY instead of height (no layout reflow) */
+  /* Accent bar: scaleY reveal on hover (no layout reflow) */
   .service-card-bar {
-    height: 3px;
     transform: scaleY(0.167);
     transform-origin: top;
     transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
