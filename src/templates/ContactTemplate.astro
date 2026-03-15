@@ -37,7 +37,7 @@ const t = useTranslations(lang);
           </div>
 
           <!-- Success message -->
-          <div id="success-message" class="hidden border-l-2 border-brand-500 bg-brand-50 px-8 py-10">
+          <div id="success-message" class="hidden border-l-2 border-brand-500 bg-brand-50 px-8 py-10" role="alert" aria-live="polite">
             <p class="text-brand-600 text-xs font-semibold uppercase tracking-[0.2em] mb-3">{t('contact.success.label')}</p>
             <p class="font-display text-2xl font-medium text-stone-900 mb-2">{t('contact.success.title')}</p>
             <p class="text-stone-500 text-sm leading-relaxed">{t('contact.success.body')}</p>
@@ -58,7 +58,7 @@ const t = useTranslations(lang);
           <div class="space-y-8 flex-1">
 
             <div>
-              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.address')}</p>
+              <p class="text-brand-100 text-xs font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.address')}</p>
               <p class="text-white text-sm leading-relaxed">
                 {address.street}<br />
                 {address.city}<br />
@@ -69,7 +69,7 @@ const t = useTranslations(lang);
             <div class="w-full h-px bg-white/10"></div>
 
             <div>
-              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.phone')}</p>
+              <p class="text-brand-100 text-xs font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.phone')}</p>
               <div class="space-y-1">
                 {phones.map((phone) => (
                   <a
@@ -85,7 +85,7 @@ const t = useTranslations(lang);
             <div class="w-full h-px bg-white/10"></div>
 
             <div>
-              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.email')}</p>
+              <p class="text-brand-100 text-xs font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.email')}</p>
               <a
                 href={`mailto:${email}`}
                 class="text-white text-sm hover:text-brand-200 transition-colors no-underline"
@@ -97,7 +97,7 @@ const t = useTranslations(lang);
             <div class="w-full h-px bg-white/10"></div>
 
             <div>
-              <p class="text-brand-100 text-[10px] font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.social')}</p>
+              <p class="text-brand-100 text-xs font-semibold uppercase tracking-[0.2em] mb-2">{t('contact.info.social')}</p>
               <a
                 href={instagram}
                 target="_blank"
