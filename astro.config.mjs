@@ -86,7 +86,7 @@ export default defineConfig({
   },
   output: 'static',
   build: {
-    inlineStylesheets: 'always',
+    inlineStylesheets: 'auto',
   },
   i18n: {
     defaultLocale: 'ca',
